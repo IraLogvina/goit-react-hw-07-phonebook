@@ -1,0 +1,14 @@
+{
+  "contacts": [
+    {
+      "id": "id-1",
+      "name": "Logvina Irina",
+      "number": "+38050-878-00-99"
+    },
+    {
+      "id": "id-2",
+      "name": "Ivanov Oleg",
+      "number": "+38050-987-90-89"
+    }
+  ]
+}

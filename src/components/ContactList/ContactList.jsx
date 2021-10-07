@@ -1,8 +1,10 @@
 import React from "react";
 import style from "./ContactList.module.css";
-import PropTypes from "prop-types";
-import actions from "../../redux/actions";
+// import PropTypes from "prop-types";
+// import actions from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { deleteContact, fetchContacts } from "../../redux/operations";
 
 // const ContactList = ({ contacts, onDelete }) => {
 
@@ -11,6 +13,7 @@ export default function ContactList() {
     visibleContacts(items, filter)
   );
   const dispatch = useDispatch();
+  useEffect(() => dispatch(fetchContacts()), [dispatch]);
 
   return (
     <ul className={style.list}>
@@ -22,7 +25,7 @@ export default function ContactList() {
             type="button"
             className={style.button}
             // onClick={() => onDelete(id)}
-            onClick={() => dispatch(actions.deleteContact(id))}
+            onClick={() => dispatch(deleteContact(id))}
           >
             Delete
           </button>
@@ -32,14 +35,14 @@ export default function ContactList() {
   );
 }
 
-ContactList.propTypes = {
-  contacts: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.array,
-  ]),
-  onClick: PropTypes.func.isRequired,
-};
+// ContactList.propTypes = {
+//   contacts: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.number,
+//     PropTypes.array,
+//   ]),
+//   onClick: PropTypes.func.isRequired,
+// };
 
 const visibleContacts = (contacts, filter) => {
   const normalizedFilter = filter.toLowerCase();

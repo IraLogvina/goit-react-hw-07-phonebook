@@ -1,15 +1,18 @@
 import React from "react";
 import { useState } from "react";
 
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
-import actions from "../../redux/actions";
-import PropTypes from "prop-types";
+// import actions from "../../redux/actions";
+import { addContact } from "../../redux/operations";
+import { useDispatch } from "react-redux";
+// import PropTypes from "prop-types";
 import style from "./ContactForm.module.css";
 
-function ContactForm({ onSubmit }) {
+export default function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const dispatch = useDispatch();
 
   const handleInput = (event) => {
     const { name, value } = event.currentTarget;
@@ -33,7 +36,8 @@ function ContactForm({ onSubmit }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit({ name, number });
+    // onSubmit({ name, number });
+    dispatch(addContact({ name, number }));
     reset();
   };
 
@@ -68,13 +72,13 @@ function ContactForm({ onSubmit }) {
   );
 }
 
-ContactForm.propTypes = {
-  addContact: PropTypes.func,
-};
+// ContactForm.propTypes = {
+//   addContact: PropTypes.func,
+// };
 
 // redux
 
-const mapDispatchToProrps = (dispatch) => ({
-  onSubmit: ({ name, number }) => dispatch(actions.addContact(name, number)),
-});
-export default connect(null, mapDispatchToProrps)(ContactForm);
+// const mapDispatchToProrps = (dispatch) => ({
+//   onSubmit: ({ name, number }) => dispatch(actions.addContact(name, number)),
+// });
+// export default connect(null, mapDispatchToProrps)(ContactForm);

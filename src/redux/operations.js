@@ -21,7 +21,7 @@ const fetchContacts = () => (dispatch) => {
     .catch((error) => dispatch(fetchContactError(error)));
 };
 
-const addContact = (name, number) => (dispatch) => {
+const addContact = ({ name, number }) => (dispatch) => {
   const contact = {
     name,
     number,

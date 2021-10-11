@@ -3,17 +3,16 @@ import style from "./ContactList.module.css";
 // import PropTypes from "prop-types";
 // import actions from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import { visibleContacts } from '../../redux/selectors';
 import { useEffect } from "react";
 import { deleteContact, fetchContacts } from "../../redux/operations";
 
 // const ContactList = ({ contacts, onDelete }) => {
 
 export default function ContactList() {
-  const list = useSelector(({ contacts: { items, filter } }) =>
-    visibleContacts(items, filter)
-  );
-  const dispatch = useDispatch();
-  useEffect(() => dispatch(fetchContacts()), [dispatch]);
+  const dispatch = useDispatch()
+  useEffect(() => dispatch(fetchContacts()), [dispatch])
+  const list = useSelector(visibleContacts)
 
   return (
     <ul className={style.list}>
@@ -44,13 +43,13 @@ export default function ContactList() {
 //   onClick: PropTypes.func.isRequired,
 // };
 
-const visibleContacts = (contacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
+// const visibleContacts = (contacts, filter) => {
+//   const normalizedFilter = filter.toLowerCase();
 
-  return contacts.filter(({ name }) =>
-    name.toLowerCase().includes(normalizedFilter)
-  );
-};
+//   return contacts.filter(({ name }) =>
+//     name.toLowerCase().includes(normalizedFilter)
+//   );
+// };
 
 // redux
 
